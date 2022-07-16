@@ -11,7 +11,7 @@ words = [
 ]
 
 hangman = {
-    5 : """
+    5: """
     |----
     |   |
     |
@@ -61,6 +61,7 @@ hangman = {
     """
 }
 
+
 def main():
     # get word randomly from words
     # then generate masked word from the chosed word
@@ -74,25 +75,27 @@ def main():
     while True:
         if '_' not in masked_word:
             break
-            
+
         if lives <= 0:
             print(hangman[lives])
             break
-        
+
         print(hangman[lives])
         print(masked_word)
         print('Lives :', lives)
         user_input = input('Input your guess: ')
-        masked_word, lives = process_input(user_input, word, masked_word, lives)
+        masked_word, lives = process_input(
+            user_input, word, masked_word, lives)
 
         print('')
-    
+
     if lives <= 0:
         print('You run out of lives, guess better next time')
     else:
         print('You guessed the word!')
 
     print('The word is:', word)
+
 
 def generate_masked_word(word):
     masked_word = '_' * len(word)
@@ -110,7 +113,6 @@ def generate_masked_word(word):
         rand_char = random.choice(word_chars)
         if rand_char not in picked_char:
             picked_char.append(rand_char)
-
 
     for c in picked_char:
         for i in range(len(word)):
